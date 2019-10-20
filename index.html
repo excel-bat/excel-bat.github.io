@@ -1,0 +1,2217 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="技术分享">
+<meta property="og:type" content="website">
+<meta property="og:title" content="excelbat&#39;s blog">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
+<meta property="og:site_name" content="excelbat&#39;s blog">
+<meta property="og:description" content="技术分享">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>excelbat's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">excelbat's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">每天code一点点</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home menu-item-active">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section">首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section">标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section">归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+
+  <a href="https://github.com/excel-bat" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/18/%E5%8D%95%E6%9C%BA100k%E5%B9%B6%E5%8F%91%E8%B0%83%E4%BC%98/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="excel_bat"/>
+      <meta itemprop="description" content="技术分享"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="excelbat's blog"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/10/18/%E5%8D%95%E6%9C%BA100k%E5%B9%B6%E5%8F%91%E8%B0%83%E4%BC%98/" class="post-title-link" itemprop="url">单机100k并发调优</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-18 17:47:34" itemprop="dateCreated datePublished" datetime="2019-10-18T17:47:34+08:00">2019-10-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-19 10:27:56" itemprop="dateModified" datetime="2019-10-19T10:27:56+08:00">2019-10-19</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/10/18/%E5%8D%95%E6%9C%BA100k%E5%B9%B6%E5%8F%91%E8%B0%83%E4%BC%98/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/18/%E5%8D%95%E6%9C%BA100k%E5%B9%B6%E5%8F%91%E8%B0%83%E4%BC%98/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/10/18/%E5%8D%95%E6%9C%BA100k%E5%B9%B6%E5%8F%91%E8%B0%83%E4%BC%98/" class="leancloud_visitors" data-flag-title="单机100k并发调优">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近事情有点多，2019年的时间进度条已经过半，，更新不及时，以后还是得坚持两周一篇</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近在做一件事情，通过tpcc客户端压测一下数据库，tpcc (前段时间阿里oceanbase夺得性能全球第一)公认的数据库压测工具，该客户端采用的是java，<br>内部嵌套jdbc。我们想实现对多个db分库同时压测，原先的tpcc已经不能满足我们的场景,我们做了多连接，tpcc客户端同时和多个db保持多条连接.我们发现<br>当想要实现单机100k连接，发现很难，所以开始想着开多个客户端最后汇总收集。但是，机器资源有富余，为什么不能？</p>
+<p><img src="http://ww1.sinaimg.cn/large/634f9ad7ly1g837ke4x0yj20fc09jdfz.jpg" alt="WX20191019-083251.png"></p>
+<h3 id="认真的优化之路"><a href="#认真的优化之路" class="headerlink" title="认真的优化之路"></a>认真的优化之路</h3><ul>
+<li>首先，我们先开启100k的连接线程，将业务操作全部干掉，尽量减少资源浪费</li>
+<li>其次，我们把已知的参数调整到最大，诸如jvm 参数，操作系统句柄数，还有tcp 参数</li>
+</ul>
+<blockquote>
+<p>JVM 参数 xms40g xmx40g xss256k</p>
+</blockquote>
+<ol>
+<li>在jdk1.8中xss<br>默认是1M，那我们为了尽量减少内存使用，我们使用比较低的设置256k，单线程256k*100k=25600M=25g，所以我们参数xmx要调整的高，当然这是我们初始设定</li>
+<li>操作系统句柄数建议openfiles弄个很大的值，修改完后，ulimit -a查看一下</li>
+<li>调整tcp参数的意义在于让单次连接效率更高</li>
+</ol>
+<ul>
+<li>接着，当我们做好这些，准备跑的时候启动到3w并发时候挂了。。。</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/634f9ad7ly1g8382tkevtj20h90a140l.jpg" alt="WX20191019-084213.png"></p>
+<p>OOM 了，之前遇到的oom，三类</p>
+<ol>
+<li>heap space (最常见，增大内存使用就行) </li>
+<li>perm space（1.8后使用metaspace)</li>
+<li>gc overhead limit exceeded(查看gc使用) </li>
+</ol>
+<p>这一下有点懵，stackoverflow 上搜了下 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ulimit -s 256 ulimit -i 120000</span><br><span class="line">echo 120000 &gt; /proc/sys/kernel/threads-max </span><br><span class="line">echo 600000 &gt; /proc/sys/vm/max_map_count </span><br><span class="line">echo 200000 &gt; /proc/sys/kernel/pid_max</span><br><span class="line">永久生效使用 sysctl -p 一下</span><br><span class="line">在其他资源可用的前提下，单个JVM能开启的最大线程数是/proc/sys/vm/max_map_count的设置数的一半</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改了配置后，过了一会后，发现又跪了，错误信息是关于memory overcommit的，<br>这一次查看了一下系统资源</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grep -i commit /proc/meminfo</span><br><span class="line"></span><br><span class="line">看到CommitLimit和Committed_As参数。</span><br><span class="line"></span><br><span class="line">CommitLimit是一个内存分配上限,CommitLimit = 物理内存 * overcommit_ratio(默认50，即50%) + swap大小</span><br><span class="line"></span><br><span class="line">Committed_As是已经分配的内存大小。**（这个值已经超过了commitlimit）**</span><br><span class="line"></span><br><span class="line">overcommit_memory参数就是控制分配内存是否可以超过CommitLimit，默认是0,即启发式的overcommitting handle,会尽量减少swap的使用,root可以分配比一般用户略多的内存。1表示允许超过CommitLimit,2表示不允许超过CommitLimit。</span><br></pre></td></tr></table></figure>
+<p>将db重启后修复</p>
+<ul>
+<li>继续前行，起来之后又报了个错</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/634f9ad7ly1g838osb8ofj20x30elafn.jpg" alt="WX20191019-084114.png"></p>
+<p>这一次是socket<br>建立失败，我们看了下db日志，结果啥都没有，jdbc那里加上日志db的端口和ip也正常，这就很茫然了，我们继续看启动的线程数，当跑了多次之后发现，每次总在51072线程的时候，崩掉<br>我们想了下，每个机器能开的端口就是65536个，因为tcp报文16bit来表示端口，所以这个是改不了了，这下完蛋了。</p>
+<p>仔细一想，不对啊，两个db，每个5w端口怎么着都够了啊,netstat -nao|grep<br>ESTABLISHED,发现确实最高到6w多就崩了，于是调整参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net.ipv4.ip_local_port_range =  40000 65535</span><br><span class="line">#表示用于向外连接的端口范围。缺省情况下很小：32768到61000，后来改为10000到65535。</span><br></pre></td></tr></table></figure>
+<p>当我们调整完后，好了，我们再回过头来看为什么到51072线程时候挂了呢，经分析是<br>（65536-40000）*2（两个db）= 51072</p>
+<p>至此，100k并发，已经彻底满足，当然1000k并发需要增加db数也是可以玩起来的</p>
+<p>那今天先聊到这，休息下眼睛</p>
+<p><img src="http://ww1.sinaimg.cn/large/634f9ad7ly1g838seyg3vj20jg0t6tb6.jpg" alt="15d11.jpg"></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/26/IO%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="excel_bat"/>
+      <meta itemprop="description" content="技术分享"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="excelbat's blog"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/26/IO%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/" class="post-title-link" itemprop="url">IO性能对比</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-26 14:43:57" itemprop="dateCreated datePublished" datetime="2019-09-26T14:43:57+08:00">2019-09-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-19 10:27:56" itemprop="dateModified" datetime="2019-10-19T10:27:56+08:00">2019-10-19</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/09/26/IO%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/26/IO%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/09/26/IO%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/" class="leancloud_visitors" data-flag-title="IO性能对比">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/22/%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0markdown-%E4%BD%93%E9%AA%8C/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="excel_bat"/>
+      <meta itemprop="description" content="技术分享"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="excelbat's blog"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/22/%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0markdown-%E4%BD%93%E9%AA%8C/" class="post-title-link" itemprop="url">有道云笔记markdown 体验</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-22 11:58:21" itemprop="dateCreated datePublished" datetime="2019-05-22T11:58:21+08:00">2019-05-22</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/05/22/%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0markdown-%E4%BD%93%E9%AA%8C/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/22/%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0markdown-%E4%BD%93%E9%AA%8C/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/05/22/%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0markdown-%E4%BD%93%E9%AA%8C/" class="leancloud_visitors" data-flag-title="有道云笔记markdown 体验">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/15/SSL-%E5%9C%A8tcp-socket%E4%B8%AD%E5%BA%94%E7%94%A8%E5%8F%8A%E4%BC%98%E5%8C%96/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="excel_bat"/>
+      <meta itemprop="description" content="技术分享"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="excelbat's blog"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/15/SSL-%E5%9C%A8tcp-socket%E4%B8%AD%E5%BA%94%E7%94%A8%E5%8F%8A%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">SSL 在tcp socket中应用及优化</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-15 16:44:46" itemprop="dateCreated datePublished" datetime="2019-04-15T16:44:46+08:00">2019-04-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-16 16:45:21" itemprop="dateModified" datetime="2019-04-16T16:45:21+08:00">2019-04-16</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/bugwar/" itemprop="url" rel="index"><span itemprop="name">问题定位</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/04/15/SSL-%E5%9C%A8tcp-socket%E4%B8%AD%E5%BA%94%E7%94%A8%E5%8F%8A%E4%BC%98%E5%8C%96/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/15/SSL-%E5%9C%A8tcp-socket%E4%B8%AD%E5%BA%94%E7%94%A8%E5%8F%8A%E4%BC%98%E5%8C%96/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/04/15/SSL-%E5%9C%A8tcp-socket%E4%B8%AD%E5%BA%94%E7%94%A8%E5%8F%8A%E4%BC%98%E5%8C%96/" class="leancloud_visitors" data-flag-title="SSL 在tcp socket中应用及优化">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h4><hr>
+<p>在rpc 通信过程中，往往使用nio channel<br>完成通信，如果想获取一个安全的信道，需要使用SSL/TLS。接下来我们从socket出发，然后在简要介绍nio的ssl使用以及常见问题处理。</p>
+<h3 id="socket-ssl-使用"><a href="#socket-ssl-使用" class="headerlink" title="socket ssl 使用"></a>socket ssl 使用</h3><p>  首先，我们先查看未使用安全套接字的通信</p>
+<ul>
+<li><p>server 端实现：</p>
+<pre><code>import java.io.*;
+import java.net.*;
+
+. . .
+
+int port = availablePortNumber;
+
+ServerSocket s;
+
+try {
+    s = new ServerSocket(port);
+    Socket c = s.accept();
+
+    OutputStream out = c.getOutputStream();
+    InputStream in = c.getInputStream();
+
+    // Send messages to the client through
+    // the OutputStream
+    // Receive messages from the client
+    // through the InputStream
+}
+
+catch (IOException e) {
+}</code></pre></li>
+<li><p>client 端实现；</p>
+<pre><code>import java.io.*;
+import java.net.*;
+
+. . .
+
+int port = availablePortNumber;
+String host = &quot;hostname&quot;;
+
+try {
+    s = new Socket(host, port);
+
+    OutputStream out = s.getOutputStream();
+    InputStream in = s.getInputStream();
+
+    // Send messages to the server through
+    // the OutputStream
+    // Receive messages from the server
+    // through the InputStream
+}
+
+catch (IOException e) {
+}</code></pre><p>接着，我们看下ssl加密的代码</p>
+</li>
+<li><p>server 端：</p>
+<pre><code>import java.io.*;
+import javax.net.ssl.*;
+
+. . .
+
+int port = availablePortNumber;
+
+SSLServerSocket s;
+
+try {
+    SSLServerSocketFactory sslSrvFact =
+        (SSLServerSocketFactory)
+        SSLServerSocketFactory.getDefault();
+    s =(SSLServerSocket)sslSrvFact.createServerSocket(port);
+
+    SSLSocket c = (SSLSocket)s.accept();
+
+    OutputStream out = c.getOutputStream();
+    InputStream in = c.getInputStream();
+
+    // Send messages to the client through
+    // the OutputStream
+    // Receive messages from the client
+    // through the InputStream
+}
+
+catch (IOException e) {
+}</code></pre></li>
+<li><p>client 端：</p>
+<pre><code>import java.io.*;
+import javax.net.ssl.*;
+
+. . .
+
+int port = availablePortNumber;
+String host = &quot;hostname&quot;;
+
+try {
+    SSLSocketFactory sslFact =
+      (SSLSocketFactory)SSLSocketFactory.getDefault();
+    SSLSocket s =
+      (SSLSocket)sslFact.createSocket(host, port);
+
+    OutputStream out = s.getOutputStream();
+    InputStream in = s.getInputStream();
+
+    // Send messages to the server through
+    // the OutputStream
+    // Receive messages from the server
+    // through the InputStream
+}
+
+catch (IOException e) {
+}</code></pre></li>
+</ul>
+<p>简单来看，并没有太多的改动，使用参考网上的示例跑了，需要导入证书。 使用keytool<br>生成的证书。</p>
+<p>至此，建立完链接，接下来我们通过wireshark来分析ssl 数据包：</p>
+
+
+<p>从图中不难看出handshake 过程：</p>
+<ol>
+<li><p>ClientHello – 客户端发送所支持的 SSL/TLS 最高协议版本号和所支持的加密算法集合及压缩方法集合等信息给服务器端。</p>
+</li>
+<li><p>ServerHello – 服务器端收到客户端信息后，选定双方都能够支持的 SSL/TLS<br>协议版本和加密方法及压缩方法，返回给客户端。</p>
+</li>
+<li><p>（可选） SendCertificate – 服务器端发送服务端证书给客户端。</p>
+</li>
+<li><p>（可选）RequestCertificate –<br>如果选择双向验证，服务器端向客户端请求客户端证书。</p>
+</li>
+<li><p>ServerHelloDone – 服务器端通知客户端初始协商结束。</p>
+</li>
+<li><p>（可选） ResponseCertificate –<br>如果选择双向验证，客户端向服务器端发送客户端证书。</p>
+</li>
+<li><p>ClientKeyExchange –<br>客户端使用服务器端的公钥，对客户端公钥和密钥种子进行加密，再发送给服务器端。</p>
+</li>
+<li><p>（可选） CertificateVerify –<br>如果选择双向验证，客户端用本地私钥生成数字签名，并发送给服务器端，让其通过收到的客户端公钥进行身份验证。</p>
+</li>
+<li><p>CreateSecretKey – 通讯双方基于密钥种子等信息生成通讯密钥。</p>
+</li>
+<li><p>ChangeCipherSpec – 客户端通知服务器端已将通讯方式切换到加密模式。</p>
+</li>
+<li><p>Finished – 客户端做好加密通讯的准备。</p>
+</li>
+<li><p>ChangeCipherSpec – 服务器端通知客户端已将通讯方式切换到加密模式。</p>
+</li>
+<li><p>Finished – 服务器做好加密通讯的准备。</p>
+</li>
+<li><p>Encrypted/DecryptedData –<br>双方使用客户端密钥，通过对称加密算法对通讯内容进行加密。</p>
+</li>
+<li><p>ClosedConnection – 通讯结束后，任何一方发出断开 SSL 连接的消息。</p>
+</li>
+</ol>
+<p>我们可以看到步骤2：</p>
+<blockquote>
+<p>Server Hello 过程会带着握手的加密套件来回应</p>
+</blockquote>
+<h3 id="常见问题："><a href="#常见问题：" class="headerlink" title="常见问题："></a>常见问题：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Waiting for connection... </span><br><span class="line">javax.net.ssl.SSLHandshakeException: no cipher suites in common </span><br><span class="line">Waiting for connection...</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>解决方式：生成公私</p>
+</blockquote>
+<blockquote>
+<p>Runtime Exception: No Cipher Suites in Common Problem 1: When<br>handshaking, the client and/or server throw this exception.</p>
+</blockquote>
+<blockquote>
+<p>Cause 1: Both sides of an SSL connection must agree on a common<br>ciphersuite. If the intersection of the client’s ciphersuite set with<br>the server’s ciphersuite set is empty, then you will see this exception.</p>
+</blockquote>
+<blockquote>
+<p>Solution 1: Configure the enabled cipher suites to include common<br>ciphersuites, and be sure to provide an appropriate keyEntry for<br>asymmetric ciphersuites. (See Exception, “No available certificate…”<br>in this section.)</p>
+</blockquote>
+<blockquote>
+<p>Problem 2: When using Netscape Navigator or Microsoft Internet Explorer<br>(IE) to access files on a server that only has DSA-based certificates, a<br>runtime exception occurs indicating that there are no cipher suites in<br>common.</p>
+</blockquote>
+<blockquote>
+<p>Cause 2: By default, keyEntries created with keytool use DSA public<br>keys. If only DSA keyEntries exist in the keystore, only DSA-based<br>ciphersuites can be used. By default, Navigator and IE send only<br>RSA-based ciphersuites. Since the intersection of client and server<br>ciphersuite sets is empty, this exception is thrown.</p>
+</blockquote>
+<blockquote>
+<p>Solution 2: To interact with Navigator or IE, you should create<br>certificates that use RSA-based keys. To do this, you need to specify<br>the -keyalg RSA option when using keytool. For example:</p>
+</blockquote>
+<pre><code>keytool -genkey -alias duke -keystore testkeys -keyalg rsa</code></pre><h3 id="NIO-中-SSL-使用，设置使用加密套件"><a href="#NIO-中-SSL-使用，设置使用加密套件" class="headerlink" title="NIO 中 SSL 使用，设置使用加密套件"></a>NIO 中 SSL 使用，设置使用加密套件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (supportedCipherSuitesWithEncryption == null) &#123;</span><br><span class="line">         cipherSuites =Arrays.stream(supportedCipherSuites).filter(s -&gt; s.contains(&quot;256&quot;)).collect(Collectors.toList());</span><br><span class="line">   </span><br><span class="line">&#125;</span><br><span class="line">sslEngine.setEnabledCipherSuites(supportedCipherSuites);</span><br></pre></td></tr></table></figure>
+
+<p>最后遇到的问题，设置加密套件不生效：</p>
+<p>保证设置加密套件的逻辑是在handshake 之前就可以。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ol>
+<li><a href="https://docs.oracle.com/javase/1.5.0/docs/guide/security/jsse/JSSERefGuide.html#NoSSLSocket" target="_blank" rel="noopener">https://docs.oracle.com/javase/1.5.0/docs/guide/security/jsse/JSSERefGuide.html#NoSSLSocket</a></li>
+<li><a href="https://blog.csdn.net/loganyang123/article/details/45567825" target="_blank" rel="noopener">https://blog.csdn.net/loganyang123/article/details/45567825</a> ssl<br>socket 示例</li>
+</ol>
+<h3 id="休息一下"><a href="#休息一下" class="headerlink" title="休息一下"></a>休息一下</h3><img src="/2019/04/15/SSL-%E5%9C%A8tcp-socket%E4%B8%AD%E5%BA%94%E7%94%A8%E5%8F%8A%E4%BC%98%E5%8C%96/bcf62f062a819b2c467ce2f38e1a8e51.jpg" class="" title="妹纸图">
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/15/apue-%E7%96%91%E9%9A%BE%E6%A6%82%E5%BF%B5%E8%A7%A3%E6%9E%90-%E5%89%8D%E4%BA%94%E7%AB%A0/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="excel_bat"/>
+      <meta itemprop="description" content="技术分享"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="excelbat's blog"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/15/apue-%E7%96%91%E9%9A%BE%E6%A6%82%E5%BF%B5%E8%A7%A3%E6%9E%90-%E5%89%8D%E4%BA%94%E7%AB%A0/" class="post-title-link" itemprop="url">apue 疑难概念解析-前五章</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-15 11:09:58 / 修改时间：15:58:46" itemprop="dateCreated datePublished" datetime="2019-03-15T11:09:58+08:00">2019-03-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/basic/" itemprop="url" rel="index"><span itemprop="name">基础知识</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/15/apue-%E7%96%91%E9%9A%BE%E6%A6%82%E5%BF%B5%E8%A7%A3%E6%9E%90-%E5%89%8D%E4%BA%94%E7%AB%A0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/15/apue-%E7%96%91%E9%9A%BE%E6%A6%82%E5%BF%B5%E8%A7%A3%E6%9E%90-%E5%89%8D%E4%BA%94%E7%AB%A0/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/03/15/apue-%E7%96%91%E9%9A%BE%E6%A6%82%E5%BF%B5%E8%A7%A3%E6%9E%90-%E5%89%8D%E4%BA%94%E7%AB%A0/" class="leancloud_visitors" data-flag-title="apue 疑难概念解析-前五章">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="开篇废话"><a href="#开篇废话" class="headerlink" title="开篇废话"></a>开篇废话</h3><hr>
+<p>最近在看apue，把书中的代码详细的敲了一遍，并上传至了github，<code>https://github.com/excel-bat/apuebegin</code>，部分概念参照了网上的结果。</p>
+<h3 id="疑难概念"><a href="#疑难概念" class="headerlink" title="疑难概念"></a>疑难概念</h3><hr>
+<ul>
+<li><p>chapter 4</p>
+<ol>
+<li><p>文件权限位中特殊权限位：set_UID 和 set_GID 其实可以理解为设置用户所属者信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;unistd.h&gt; // chown</span><br><span class="line">#include &lt;stdio.h&gt;  // printf, perror</span><br><span class="line"></span><br><span class="line">#define ROOT_UID 0</span><br><span class="line">#define ROOT_GID 0</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[]) &#123;</span><br><span class="line"></span><br><span class="line">    // 1)</span><br><span class="line"></span><br><span class="line">    if (argc != 2) &#123;</span><br><span class="line">        printf(&quot;usage: ./a.out filepath&quot;);</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 2)</span><br><span class="line"></span><br><span class="line">    char *filepath = argv[1];</span><br><span class="line"></span><br><span class="line">    if (chown(filepath, ROOT_UID, ROOT_GID) == -1) &#123;</span><br><span class="line">        perror(&quot;Change owner fail&quot;);</span><br><span class="line">        return 2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 3)</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l /tmp/ttt</span><br><span class="line">-rw-rw-r-- 1 xxx xxx 0  1月 24 10:27 /tmp/ttt</span><br><span class="line"></span><br><span class="line">$ ./a.out /tmp/ttt</span><br><span class="line">Change owner fail: Operation not permitted</span><br><span class="line"></span><br><span class="line">$ sudo ./a.out /tmp/ttt</span><br><span class="line"></span><br><span class="line">$ ls -l /tmp/ttt</span><br><span class="line">-rw-rw-r-- 1 root root 0  1月 24 10:27 /tmp/ttt</span><br></pre></td></tr></table></figure>
+<p>其中 最后一行 ,root 就是特殊权限位</p>
+<blockquote>
+<p>-rw-rw-r– 1 <code>root root</code> 0 1月 24 10:27 /tmp/ttt</p>
+</blockquote>
+</li>
+<li><p>umask 函数，文件权限掩码(权限屏蔽位)，说白了就是原有权限减去umask值得到的就是真实的权限位。</p>
+</li>
+</ol>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/13/%E5%BC%95%E5%8F%91%E7%BA%BF%E7%A8%8Bcpu%E5%8D%A0%E7%94%A8%E7%8E%87%E6%8C%81%E7%BB%AD%E9%A3%99%E5%8D%87%E7%9A%84%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="excel_bat"/>
+      <meta itemprop="description" content="技术分享"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="excelbat's blog"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/13/%E5%BC%95%E5%8F%91%E7%BA%BF%E7%A8%8Bcpu%E5%8D%A0%E7%94%A8%E7%8E%87%E6%8C%81%E7%BB%AD%E9%A3%99%E5%8D%87%E7%9A%84%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">引发线程cpu占用率持续飙升的根因分析</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-13 17:34:10 / 修改时间：18:39:54" itemprop="dateCreated datePublished" datetime="2019-03-13T17:34:10+08:00">2019-03-13</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/systemanalyze/" itemprop="url" rel="index"><span itemprop="name">系统分析</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/13/%E5%BC%95%E5%8F%91%E7%BA%BF%E7%A8%8Bcpu%E5%8D%A0%E7%94%A8%E7%8E%87%E6%8C%81%E7%BB%AD%E9%A3%99%E5%8D%87%E7%9A%84%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/13/%E5%BC%95%E5%8F%91%E7%BA%BF%E7%A8%8Bcpu%E5%8D%A0%E7%94%A8%E7%8E%87%E6%8C%81%E7%BB%AD%E9%A3%99%E5%8D%87%E7%9A%84%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/03/13/%E5%BC%95%E5%8F%91%E7%BA%BF%E7%A8%8Bcpu%E5%8D%A0%E7%94%A8%E7%8E%87%E6%8C%81%E7%BB%AD%E9%A3%99%E5%8D%87%E7%9A%84%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90/" class="leancloud_visitors" data-flag-title="引发线程cpu占用率持续飙升的根因分析">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="安利一下"><a href="#安利一下" class="headerlink" title="安利一下"></a>安利一下</h3><hr>
+<p>在最近系统性能调优的过程中，用到了很多工具，由于笔者开发的主要是java应用，从linux<br>工具到jdk工具，以及全链路追踪工具，都解决了相当多的问题，而完全面向java应用的的工具，笔者墙裂推荐<br><a href="https://alibaba.github.io/arthas/" target="_blank" rel="noopener">阿里的arthas</a>,这款工具简单，简单到分析cpu、内存问题分分钟就能找到些蛛丝马迹。</p>
+<h3 id="问题抽象"><a href="#问题抽象" class="headerlink" title="问题抽象"></a>问题抽象</h3><hr>
+<p>项目最近做了一次大升级，压测后发现项目跑了24小时后，开始出现某个线程cpu占用100%，如下图所示：</p>
+  <img src="/2019/03/13/%E5%BC%95%E5%8F%91%E7%BA%BF%E7%A8%8Bcpu%E5%8D%A0%E7%94%A8%E7%8E%87%E6%8C%81%E7%BB%AD%E9%A3%99%E5%8D%87%E7%9A%84%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90/WX20190313-175543@2x.png" class="" title="占用cpu多的堆栈">
+
+<p>重启后，仔细观察该线程，发现线程cpu使用率在逐渐递增，我们通过jvisualvm，快速的找到了问题的堆栈，发现是某个redis操作，这个操作里面调用了lua脚本，并使用了evalsha（）的方式执行。</p>
+<h3 id="抽丝剥茧"><a href="#抽丝剥茧" class="headerlink" title="抽丝剥茧"></a>抽丝剥茧</h3><hr>
+<p>从现象我们理所当然的想到了，会不会是redis集群慢了，拖垮了整个项目，通过redis<br>monitor 发现单次请求响应变化不大，并且redis cpu 占用率属于正常。使用perf命令记录如下：</p>
+  <img src="/2019/03/13/%E5%BC%95%E5%8F%91%E7%BA%BF%E7%A8%8Bcpu%E5%8D%A0%E7%94%A8%E7%8E%87%E6%8C%81%E7%BB%AD%E9%A3%99%E5%8D%87%E7%9A%84%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90/image.png" class="" title="redis cpu占用">
+
+<p>然后开始想，既然占用cpu 多，那就把方法时间打出来吧，通过log的方式记录下来，发下每千次调用的平均时间是毫秒级，而且稳定不会递增。<br>这个时候又没了思路，用arthas 开始记录该方法的耗时，一行命令就记录如下，每5s记录一次平均时间，而且不用改代码，这可是福音啊</p>
+<img src="/2019/03/13/%E5%BC%95%E5%8F%91%E7%BA%BF%E7%A8%8Bcpu%E5%8D%A0%E7%94%A8%E7%8E%87%E6%8C%81%E7%BB%AD%E9%A3%99%E5%8D%87%E7%9A%84%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90/WX20190313-182126@2x.png" class="" title="monitor执行结果">
+
+<p>基本跟log一致，然后开始使用 <code>thread -n 3 -i 1000</code><br>发现另外一个线程，然后同样执行monitor，发现该方法单位时间内的调用次数在增加，什么情况，方法调用难道写了个循环么，打开代码一看，外层调用并没有循环。。。<br>但是发现方法内存在循环，该循环是从set集合里取数据并判断该数据是否合法，合法就从set中移除，并break循环，看起来貌似没有任何问题。直觉告诉我，这个set会不会过大呢，这个set是用枚举单例的成员变量，想要打印这个变量里面的数据，放在以前打印log，又是一段代码，而且查看起来特别费劲，这个时候，我们又祭出神器，arthas的ognl命令。非常给力</p>
+<blockquote>
+<p>ognl ‘@<a href="mailto:xxx.common.redis.collections.UniqConcurrentSet@INSTANCE.dataIsNullSet" target="_blank" rel="noopener">xxx.common.redis.collections.UniqConcurrentSet@INSTANCE.dataIsNullSet</a>‘<br>ognl ‘@<a href="mailto:xxx.common.redis.collections.UniqConcurrentSet@INSTANCE.dataIsNullSet.size" target="_blank" rel="noopener">xxx.common.redis.collections.UniqConcurrentSet@INSTANCE.dataIsNullSet.size</a>()’</p>
+</blockquote>
+<p>结果这个set都37w<br>条数据了，而且还在持续上升，但是占用内存很小，单行记录80B左右，总体不到50M，原来真正导致cpu上升的元凶就是数据量大了后，遍历耗时了，定位到了原因，接着及时删除数据，cpu平稳了</p>
+<pre><code>那今天先聊到这，休息下眼睛
+{% asset_img meizi.jpg 妹纸图 %}</code></pre>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/07/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FFUSE%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="excel_bat"/>
+      <meta itemprop="description" content="技术分享"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="excelbat's blog"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/07/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FFUSE%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/" class="post-title-link" itemprop="url">文件系统FUSE开发实践</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-07 11:21:53 / 修改时间：18:02:47" itemprop="dateCreated datePublished" datetime="2019-03-07T11:21:53+08:00">2019-03-07</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/basic/" itemprop="url" rel="index"><span itemprop="name">基础知识</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/07/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FFUSE%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/07/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FFUSE%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/03/07/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FFUSE%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/" class="leancloud_visitors" data-flag-title="文件系统FUSE开发实践">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="预热"><a href="#预热" class="headerlink" title="预热"></a>预热</h2><hr>
+<p>最近一直在优化分布式文件系统的性能，学习了linux内核文件系统的函数，了解到linux一切皆文件，<br>除了常见的文件、目录还有socket（可查阅apue<br>第四章内容），那这些文件的管理都离不开VFS（虚拟文件系统），linux支持ext、ext2<br>xfs等多种文件系统<br>，那都是依赖于统一的文件操作界面，底层采用链表的方式，将不同的文件系统链接。打个比方，linux内核就像一个工厂，而VFS是模板，而某一个文件系统就是根据模板生成的产品<br>。FUSE（filesystem in user<br>space）用户态文件系统是介于VFS和用户自定义文件系统的枢纽。</p>
+<h3 id="FUSE文件系统实现"><a href="#FUSE文件系统实现" class="headerlink" title="FUSE文件系统实现"></a>FUSE文件系统实现</h3><hr>
+<p>为了让大家有个直观的认识，我们先看下图：</p>
+<img src="/2019/03/07/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FFUSE%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/fuse.png" class="" title="fuse交互图">
+
+<p>上图可以划分为三个部分</p>
+<blockquote>
+<ol>
+<li>内核：包含VFS</li>
+<li>fuse：fuse和VFS交互完成</li>
+<li>用户程序：用户程序跟fuse交互</li>
+</ol>
+</blockquote>
+<p>以一个具体的open文件为例：前提是已经挂载了该文件系统</p>
+<ul>
+<li>用户app调用glibc open接口，触发sys_open系统调用（或者手动打开）。</li>
+<li>sys_open 调用fuse中inode节点定义的open方法。</li>
+<li>inode中open生成一个request消息，并通过/dev/fuse发送request消息到用户态fuse。</li>
+<li>fuse调用<code>fuse_application用户自定义的open的方法</code>，并将返回值通过/dev/fuse通知给内核</li>
+<li>内核在返回给用户app（或者说用户在界面中看到了打开的文件内容）</li>
+</ul>
+<h3 id="FUSE-开发示例"><a href="#FUSE-开发示例" class="headerlink" title="FUSE 开发示例"></a>FUSE 开发示例</h3><hr>
+<p>接下来，进入实战环节：</p>
+<blockquote>
+<ul>
+<li>Mac OSX 10.14.2</li>
+<li>安装 osxfuse ：brew cask install osxfuse)</li>
+<li>clion 2018</li>
+</ul>
+</blockquote>
+<p>从github 上拉取项目：<a href="https://github.com/excel-bat/apuebegin.git" target="_blank" rel="noopener">https://github.com/excel-bat/apuebegin.git</a></p>
+<p>将该项目中的chapterRes/fuse-demo<br>导入到clion中，编译打包，然后跳转到对应的<code>terminal</code></p>
+<ul>
+<li>mkdir /tmp/example</li>
+<li>cd - (跳转到项目目录下的fuse-demo/cmake-build-debug/bin )</li>
+<li>fuse-demo -f /tmp/example （-f 前台运行）</li>
+<li>打开finder，到XXX的MacBook，会多出来一个挂载点</li>
+<li>目前只实现了open，效果如下</li>
+</ul>
+<img src="/2019/03/07/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FFUSE%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/WX20190307-175546@2x.png" class="" title="文件系统效果图">
+
+
+<p>```<br>那今天先聊到这，休息下眼睛</p>
+<img src="/2019/03/07/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FFUSE%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/5.jpg" class="" title="妹纸图">
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"></a>
+  </nav>
+
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">excel_bat</p>
+              <p class="site-description motion-element" itemprop="description">技术分享</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                  <a href="https://github.com/excel-bat?tab=repositories" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;excel-bat?tab=repositories" rel="noopener" target="_blank">GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                  <a href="mailto:1301954256@qq.com" title="E-Mail &amp;rarr; mailto:1301954256@qq.com" rel="noopener" target="_blank">E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">excel_bat</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'hP1iCn4TrkidYasmg11swp8N-gzGzoHsz',
+    appKey: 'Tw6wStBWeQsBrtfUY3svO3gv',
+    placeholder: '欢迎留言',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+</script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

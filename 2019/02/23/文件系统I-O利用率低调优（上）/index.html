@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="酝酿一下 一直以来都在做分布式存储的事情，从最开始的本地文件系统到伪分布式文件系统，从FastDFS 到 HDFS ，以及到自研的 DFS，说到 DFS 不得不提两点：1.DFS 存什么？2.DFS怎么存？那首先，存什么，其实除了原本的文件内容本身外，我们需要将文件的元数据信息以及文件所在的目录信息也保存下来；其次，我们需要考虑的是如何存，目前主流的分布式文件系统都是依照google提出的论文所开">
+<meta name="keywords" content="性能优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件系统I&#x2F;O利用率低调优（上）">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;02&#x2F;23&#x2F;%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FI-O%E5%88%A9%E7%94%A8%E7%8E%87%E4%BD%8E%E8%B0%83%E4%BC%98%EF%BC%88%E4%B8%8A%EF%BC%89&#x2F;index.html">
+<meta property="og:site_name" content="excelbat&#39;s blog">
+<meta property="og:description" content="酝酿一下 一直以来都在做分布式存储的事情，从最开始的本地文件系统到伪分布式文件系统，从FastDFS 到 HDFS ，以及到自研的 DFS，说到 DFS 不得不提两点：1.DFS 存什么？2.DFS怎么存？那首先，存什么，其实除了原本的文件内容本身外，我们需要将文件的元数据信息以及文件所在的目录信息也保存下来；其次，我们需要考虑的是如何存，目前主流的分布式文件系统都是依照google提出的论文所开">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;02&#x2F;23&#x2F;%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FI-O%E5%88%A9%E7%94%A8%E7%8E%87%E4%BD%8E%E8%B0%83%E4%BC%98%EF%BC%88%E4%B8%8A%EF%BC%89&#x2F;%E5%9B%BE%E7%89%87.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;02&#x2F;23&#x2F;%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FI-O%E5%88%A9%E7%94%A8%E7%8E%87%E4%BD%8E%E8%B0%83%E4%BC%98%EF%BC%88%E4%B8%8A%EF%BC%89&#x2F;1.jpg">
+<meta property="og:updated_time" content="2019-02-23T04:38:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;02&#x2F;23&#x2F;%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FI-O%E5%88%A9%E7%94%A8%E7%8E%87%E4%BD%8E%E8%B0%83%E4%BC%98%EF%BC%88%E4%B8%8A%EF%BC%89&#x2F;%E5%9B%BE%E7%89%87.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/23/文件系统I-O利用率低调优（上）/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>文件系统I/O利用率低调优（上） | excelbat's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">excelbat's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">每天code一点点</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section">首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section">标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section">归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+
+  <a href="https://github.com/excel-bat" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/23/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FI-O%E5%88%A9%E7%94%A8%E7%8E%87%E4%BD%8E%E8%B0%83%E4%BC%98%EF%BC%88%E4%B8%8A%EF%BC%89/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="excel_bat"/>
+      <meta itemprop="description" content="技术分享"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="excelbat's blog"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">文件系统I/O利用率低调优（上）
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-23 10:36:14 / 修改时间：12:38:42" itemprop="dateCreated datePublished" datetime="2019-02-23T10:36:14+08:00">2019-02-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/systemanalyze/" itemprop="url" rel="index"><span itemprop="name">系统分析</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/02/23/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FI-O%E5%88%A9%E7%94%A8%E7%8E%87%E4%BD%8E%E8%B0%83%E4%BC%98%EF%BC%88%E4%B8%8A%EF%BC%89/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/02/23/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FI-O%E5%88%A9%E7%94%A8%E7%8E%87%E4%BD%8E%E8%B0%83%E4%BC%98%EF%BC%88%E4%B8%8A%EF%BC%89/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/02/23/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FI-O%E5%88%A9%E7%94%A8%E7%8E%87%E4%BD%8E%E8%B0%83%E4%BC%98%EF%BC%88%E4%B8%8A%EF%BC%89/" class="leancloud_visitors" data-flag-title="文件系统I/O利用率低调优（上）">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="酝酿一下"><a href="#酝酿一下" class="headerlink" title="酝酿一下"></a>酝酿一下</h3><hr>
+<p>一直以来都在做分布式存储的事情，从最开始的本地文件系统到伪分布式文件系统，从<br>FastDFS 到 HDFS ，以及到自研的 DFS，说到 DFS 不得不提两点：1.DFS 存什么？2.<br>DFS<br>怎么存？那首先，存什么，其实除了原本的文件内容本身外，我们需要将文件的元数据信息以及文件所在的目录信息也保存下来；其次，我们需要考虑的是如何存，目前主流的分布式文件系统都是依照google<br>提出的论文所开发的，那就是元数据保存在一个进程，文件内容放在另一个进程，进程间通信，实现文件的读写。</p>
+<h3 id="今天的主题"><a href="#今天的主题" class="headerlink" title="今天的主题"></a>今天的主题</h3><hr>
+<p>文件系统I/O利用率低：目前自研的dfs文件系统I/O吞吐量上不去，那造成这个问题的元凶到底是什么？</p>
+<h3 id="现象描述"><a href="#现象描述" class="headerlink" title="现象描述"></a>现象描述</h3><hr>
+<p>环境信息：</p>
+<ul>
+<li>操作系统：centos7</li>
+<li>磁盘：2T SSD</li>
+<li>CPU: 48 核</li>
+</ul>
+<p>首先，作为公司的统一的dfs平台，接收来自业务的读写数据，从业务方跑benchmark，发现tps<br>只有2k 多，那作为一个这么牛配置的机器，跑这么低的tps我们现在分析一下。</p>
+<h3 id="定位步骤"><a href="#定位步骤" class="headerlink" title="定位步骤"></a>定位步骤</h3><hr>
+<p>首先，要做性能分析，上来top 先看系统平均负载信息，很低，对应R 状态的进程也只有dfs<br>的进程 紧接着，看一下iotop，发现只有很少的7-8M/s的文件写入，这是什么鬼。</p>
+<ol>
+<li><p>初步怀疑是SSD 没配置好，使用dd 命令跑一下现在的磁盘读写速度：</p>
+<p>写性能：<code>dd if=/dev/zero of=/data/test bs=8M count=1000</code><br>读性能：<code>dd
+if=/data/test of=/dev/null bs=8M count=1000</code></p>
+<p>根目录下创建data目录，发现每秒都是<code>1.9G/s</code> 这个排除SSD配置的问题</p>
+</li>
+<li><p>那我们把焦点放到存储进程的cpu 使用情况上来，使用火焰图分析：</p>
+<img src="/2019/02/23/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FI-O%E5%88%A9%E7%94%A8%E7%8E%87%E4%BD%8E%E8%B0%83%E4%BC%98%EF%BC%88%E4%B8%8A%EF%BC%89/%E5%9B%BE%E7%89%87.png" class="" title="占用cpu多的堆栈">
+
+<p>简单说一下生成火焰图步骤,root 用户：</p>
+<blockquote>
+<ol>
+<li>yum install perf</li>
+<li>安装cmake</li>
+<li>安装 perf-map-agent （这款工具是为了解决perf生成的方法栈展示成地址没有方法名的问题）</li>
+<li>jvm 中增加参数 <strong>-XX:+PreserveFramePointer</strong></li>
+<li>安装FlameGraph</li>
+<li>使用脚本 <a href="/2019/02/23/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FI-O%E5%88%A9%E7%94%A8%E7%8E%87%E4%BD%8E%E8%B0%83%E4%BC%98%EF%BC%88%E4%B8%8A%EF%BC%89/gen-flame-graph.sh" title="gen-flame-graph.sh">gen-flame-graph.sh</a>生成火焰图，如果本地java命令安装不规范，修改脚本43行路径）</li>
+</ol>
+</blockquote>
+<blockquote>
+</blockquote>
+<p>分析火焰图，发现大量的new<br>RandomAccessFile（），频繁的创建关闭，影响性能，尝试缓存。</p>
+<p>RandomAccessFile 构造方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line">public RandomAccessFile(File file, String mode)</span><br><span class="line">       throws FileNotFoundException</span><br><span class="line">   &#123;</span><br><span class="line">       String name = (file != null ? file.getPath() : null);</span><br><span class="line">       int imode = -1;</span><br><span class="line">       if (mode.equals(&quot;r&quot;))</span><br><span class="line">           imode = O_RDONLY;</span><br><span class="line">       else if (mode.startsWith(&quot;rw&quot;)) &#123;</span><br><span class="line">           imode = O_RDWR;</span><br><span class="line">           rw = true;</span><br><span class="line">           if (mode.length() &gt; 2) &#123;</span><br><span class="line">               if (mode.equals(&quot;rws&quot;))</span><br><span class="line">                   imode |= O_SYNC;</span><br><span class="line">               else if (mode.equals(&quot;rwd&quot;))</span><br><span class="line">                   imode |= O_DSYNC;</span><br><span class="line">               else</span><br><span class="line">                   imode = -1;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       if (imode &lt; 0)</span><br><span class="line">           throw new IllegalArgumentException(&quot;Illegal mode \&quot;&quot; + mode</span><br><span class="line">                                              + &quot;\&quot; must be one of &quot;</span><br><span class="line">                                              + &quot;\&quot;r\&quot;, \&quot;rw\&quot;, \&quot;rws\&quot;,&quot;</span><br><span class="line">                                              + &quot; or \&quot;rwd\&quot;&quot;);</span><br><span class="line">       SecurityManager security = System.getSecurityManager();</span><br><span class="line">       if (security != null) &#123;</span><br><span class="line">           security.checkRead(name);</span><br><span class="line">           if (rw) &#123;</span><br><span class="line">               security.checkWrite(name);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       if (name == null) &#123;</span><br><span class="line">           throw new NullPointerException();</span><br><span class="line">       &#125;</span><br><span class="line">       if (file.isInvalid()) &#123;</span><br><span class="line">           throw new FileNotFoundException(&quot;Invalid file path&quot;);</span><br><span class="line">       &#125;</span><br><span class="line">       fd = new FileDescriptor();</span><br><span class="line">       fd.attach(this);</span><br><span class="line">       path = name;</span><br><span class="line">       open(name, imode);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>那今天先到这，顺便休息下眼睛</p>
+</li>
+</ol>
+<img src="/2019/02/23/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FI-O%E5%88%A9%E7%94%A8%E7%8E%87%E4%BD%8E%E8%B0%83%E4%BC%98%EF%BC%88%E4%B8%8A%EF%BC%89/1.jpg" class="" title="妹纸图">
+
+
+
+
+
+
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById(&quot;QR&quot;); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.jpg" alt="excel_bat 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="excel_bat 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag"># 性能优化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/17/redis-lua-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="next" title="redis lua 性能优化">
+                <i class="fa fa-chevron-left"></i> redis lua 性能优化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/07/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FI-O%E5%88%A9%E7%94%A8%E7%8E%87%E4%BD%8E%E8%B0%83%E4%BC%98%EF%BC%88%E4%B8%8B%EF%BC%89/" rel="prev" title="文件系统I/O利用率低调优（下）">
+                文件系统I/O利用率低调优（下） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">excel_bat</p>
+              <p class="site-description motion-element" itemprop="description">技术分享</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                  <a href="https://github.com/excel-bat?tab=repositories" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;excel-bat?tab=repositories" rel="noopener" target="_blank">GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                  <a href="mailto:1301954256@qq.com" title="E-Mail &amp;rarr; mailto:1301954256@qq.com" rel="noopener" target="_blank">E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#酝酿一下"><span class="nav-number">1.</span> <span class="nav-text">酝酿一下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#今天的主题"><span class="nav-number">2.</span> <span class="nav-text">今天的主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#现象描述"><span class="nav-number">3.</span> <span class="nav-text">现象描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定位步骤"><span class="nav-number">4.</span> <span class="nav-text">定位步骤</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">excel_bat</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'hP1iCn4TrkidYasmg11swp8N-gzGzoHsz',
+    appKey: 'Tw6wStBWeQsBrtfUY3svO3gv',
+    placeholder: '欢迎留言',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
