@@ -315,7 +315,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/18/%E5%8D%95%E6%9C%BA100k%E5%B9%B6%E5%8F%91%E8%B0%83%E4%BC%98/"/>
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/04/15/pycharm-%E5%AF%BC%E5%85%A5Auto-GPT%EF%BC%88%E5%A2%99%E5%86%85%EF%BC%89/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="excel_bat"/>
@@ -335,7 +335,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/10/18/%E5%8D%95%E6%9C%BA100k%E5%B9%B6%E5%8F%91%E8%B0%83%E4%BC%98/" class="post-title-link" itemprop="url">单机100k并发调优</a>
+                <a href="/2023/04/15/pycharm-%E5%AF%BC%E5%85%A5Auto-GPT%EF%BC%88%E5%A2%99%E5%86%85%EF%BC%89/" class="post-title-link" itemprop="url">pycharm 导入Auto-GPT（墙内）</a>
               
             
           </h1>
@@ -360,28 +360,34 @@
                 
               
 
-              <time title="创建时间：2019-10-18 17:47:34" itemprop="dateCreated datePublished" datetime="2019-10-18T17:47:34+08:00">2019-10-18</time>
+              <time title="创建时间：2023-04-15 21:58:55 / 修改时间：22:52:17" itemprop="dateCreated datePublished" datetime="2023-04-15T21:58:55+08:00">2023-04-15</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-10-19 10:27:56" itemprop="dateModified" datetime="2019-10-19T10:27:56+08:00">2019-10-19</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E7%BC%96%E7%A8%8B-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">编程, 人工智能</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -395,8 +401,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/10/18/%E5%8D%95%E6%9C%BA100k%E5%B9%B6%E5%8F%91%E8%B0%83%E4%BC%98/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/18/%E5%8D%95%E6%9C%BA100k%E5%B9%B6%E5%8F%91%E8%B0%83%E4%BC%98/" itemprop="commentCount"></span>
+                <a href="/2023/04/15/pycharm-%E5%AF%BC%E5%85%A5Auto-GPT%EF%BC%88%E5%A2%99%E5%86%85%EF%BC%89/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2023/04/15/pycharm-%E5%AF%BC%E5%85%A5Auto-GPT%EF%BC%88%E5%A2%99%E5%86%85%EF%BC%89/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -404,7 +410,7 @@
 
           
           
-            <span id="/2019/10/18/%E5%8D%95%E6%9C%BA100k%E5%B9%B6%E5%8F%91%E8%B0%83%E4%BC%98/" class="leancloud_visitors" data-flag-title="单机100k并发调优">
+            <span id="/2023/04/15/pycharm-%E5%AF%BC%E5%85%A5Auto-GPT%EF%BC%88%E5%A2%99%E5%86%85%EF%BC%89/" class="leancloud_visitors" data-flag-title="pycharm 导入Auto-GPT（墙内）">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -437,229 +443,52 @@
       
         
           
-            <p>最近事情有点多，2019年的时间进度条已经过半，，更新不及时，以后还是得坚持两周一篇</p>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近在做一件事情，通过tpcc客户端压测一下数据库，tpcc (前段时间阿里oceanbase夺得性能全球第一)公认的数据库压测工具，该客户端采用的是java，<br>内部嵌套jdbc。我们想实现对多个db分库同时压测，原先的tpcc已经不能满足我们的场景,我们做了多连接，tpcc客户端同时和多个db保持多条连接.我们发现<br>当想要实现单机100k连接，发现很难，所以开始想着开多个客户端最后汇总收集。但是，机器资源有富余，为什么不能？</p>
-<p><img src="http://ww1.sinaimg.cn/large/634f9ad7ly1g837ke4x0yj20fc09jdfz.jpg" alt="WX20191019-083251.png"></p>
-<h3 id="认真的优化之路"><a href="#认真的优化之路" class="headerlink" title="认真的优化之路"></a>认真的优化之路</h3><ul>
-<li>首先，我们先开启100k的连接线程，将业务操作全部干掉，尽量减少资源浪费</li>
-<li>其次，我们把已知的参数调整到最大，诸如jvm 参数，操作系统句柄数，还有tcp 参数</li>
-</ul>
-<blockquote>
-<p>JVM 参数 xms40g xmx40g xss256k</p>
-</blockquote>
+            <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>AutoGPT 是让 GPT-4 自动化的驱动，通过设定5个目标，自动搜索数据并喂给GPT，同时分析返回结果。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>在接入 AutoGPT 之前，你需要完成以下几个步骤：</p>
 <ol>
-<li>在jdk1.8中xss<br>默认是1M，那我们为了尽量减少内存使用，我们使用比较低的设置256k，单线程256k*100k=25600M=25g，所以我们参数xmx要调整的高，当然这是我们初始设定</li>
-<li>操作系统句柄数建议openfiles弄个很大的值，修改完后，ulimit -a查看一下</li>
-<li>调整tcp参数的意义在于让单次连接效率更高</li>
+<li>安装 PyCharm</li>
+<li>科学上网：clash </li>
 </ol>
-<ul>
-<li>接着，当我们做好这些，准备跑的时候启动到3w并发时候挂了。。。</li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install openai-autogpt</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装Auto-GPT"><a href="#安装Auto-GPT" class="headerlink" title="安装Auto-GPT"></a>安装Auto-GPT</h2><ul>
+<li>打开终端执行</li>
 </ul>
-<p><img src="http://ww1.sinaimg.cn/large/634f9ad7ly1g8382tkevtj20h90a140l.jpg" alt="WX20191019-084213.png"></p>
-<p>OOM 了，之前遇到的oom，三类</p>
-<ol>
-<li>heap space (最常见，增大内存使用就行) </li>
-<li>perm space（1.8后使用metaspace)</li>
-<li>gc overhead limit exceeded(查看gc使用) </li>
-</ol>
-<p>这一下有点懵，stackoverflow 上搜了下 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ulimit -s 256 ulimit -i 120000</span><br><span class="line">echo 120000 &gt; /proc/sys/kernel/threads-max </span><br><span class="line">echo 600000 &gt; /proc/sys/vm/max_map_count </span><br><span class="line">echo 200000 &gt; /proc/sys/kernel/pid_max</span><br><span class="line">永久生效使用 sysctl -p 一下</span><br><span class="line">在其他资源可用的前提下，单个JVM能开启的最大线程数是/proc/sys/vm/max_map_count的设置数的一半</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Torantulino/Auto-GPT</span><br></pre></td></tr></table></figure>
+<ul>
+<li>打开pycharm 导入项目</li>
+</ul>
+<img src="/2023/04/15/pycharm-%E5%AF%BC%E5%85%A5Auto-GPT%EF%BC%88%E5%A2%99%E5%86%85%EF%BC%89/1.png" class="" title="导入项目">
 
 <ul>
-<li>修改了配置后，过了一会后，发现又跪了，错误信息是关于memory overcommit的，<br>这一次查看了一下系统资源</li>
+<li><p>将.env.template 重命名为 .env</p>
+</li>
+<li><p>修改.env 的配置文件</p>
+</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">grep -i commit /proc/meminfo</span><br><span class="line"></span><br><span class="line">看到CommitLimit和Committed_As参数。</span><br><span class="line"></span><br><span class="line">CommitLimit是一个内存分配上限,CommitLimit = 物理内存 * overcommit_ratio(默认50，即50%) + swap大小</span><br><span class="line"></span><br><span class="line">Committed_As是已经分配的内存大小。**（这个值已经超过了commitlimit）**</span><br><span class="line"></span><br><span class="line">overcommit_memory参数就是控制分配内存是否可以超过CommitLimit，默认是0,即启发式的overcommitting handle,会尽量减少swap的使用,root可以分配比一般用户略多的内存。1表示允许超过CommitLimit,2表示不允许超过CommitLimit。</span><br></pre></td></tr></table></figure>
-<p>将db重启后修复</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">OPENAI_API_KEY=  #获取地址 https://platform.openai.com/</span><br><span class="line">PINECONE_API_KEY= #获取地址 https://www.pinecone.io</span><br><span class="line">GOOGLE_API_KEY= #获取地址 请参考 https://zhuanlan.zhihu.com/p/621746507</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="关键-设置代理"><a href="#关键-设置代理" class="headerlink" title="关键 设置代理"></a>关键 设置代理</h2><ul>
+<li><ul>
+<li>打开 tiktoken 下面的load.py ，然后修改 read_file 方法，增加代理</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_file</span><span class="params">(blobpath: str)</span> -&gt; bytes:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> blobpath.startswith(<span class="string">"http://"</span>) <span class="keyword">and</span> <span class="keyword">not</span> blobpath.startswith(<span class="string">"https://"</span>):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">import</span> blobfile</span><br><span class="line">        <span class="keyword">except</span> ImportError:</span><br><span class="line">            <span class="keyword">raise</span> ImportError(</span><br><span class="line">                <span class="string">"blobfile is not installed. Please install it by running `pip install blobfile`."</span></span><br><span class="line">            )</span><br><span class="line">        <span class="keyword">with</span> blobfile.BlobFile(blobpath, <span class="string">"rb"</span>) <span class="keyword">as</span> f:</span><br><span class="line">            <span class="keyword">return</span> f.read()</span><br><span class="line">    <span class="comment"># avoiding blobfile for public files helps avoid auth issues, like MFA prompts</span></span><br><span class="line">    proxies = &#123;</span><br><span class="line">        <span class="string">'http'</span>: <span class="string">'http://127.0.0.1:7890'</span>,</span><br><span class="line">        <span class="string">'https'</span>: <span class="string">'http://127.0.0.1:7890'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> requests.get(blobpath, proxies=proxies).content</span><br></pre></td></tr></table></figure>
 <ul>
-<li>继续前行，起来之后又报了个错</li>
+<li><ul>
+<li>打开 openai 下面的 api_requestor.py,修改 request_raw 方法为</li>
 </ul>
-<p><img src="http://ww1.sinaimg.cn/large/634f9ad7ly1g838osb8ofj20x30elafn.jpg" alt="WX20191019-084114.png"></p>
-<p>这一次是socket<br>建立失败，我们看了下db日志，结果啥都没有，jdbc那里加上日志db的端口和ip也正常，这就很茫然了，我们继续看启动的线程数，当跑了多次之后发现，每次总在51072线程的时候，崩掉<br>我们想了下，每个机器能开的端口就是65536个，因为tcp报文16bit来表示端口，所以这个是改不了了，这下完蛋了。</p>
-<p>仔细一想，不对啊，两个db，每个5w端口怎么着都够了啊,netstat -nao|grep<br>ESTABLISHED,发现确实最高到6w多就崩了，于是调整参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net.ipv4.ip_local_port_range =  40000 65535</span><br><span class="line">#表示用于向外连接的端口范围。缺省情况下很小：32768到61000，后来改为10000到65535。</span><br></pre></td></tr></table></figure>
-<p>当我们调整完后，好了，我们再回过头来看为什么到51072线程时候挂了呢，经分析是<br>（65536-40000）*2（两个db）= 51072</p>
-<p>至此，100k并发，已经彻底满足，当然1000k并发需要增加db数也是可以玩起来的</p>
-<p>那今天先聊到这，休息下眼睛</p>
-<p><img src="http://ww1.sinaimg.cn/large/634f9ad7ly1g838seyg3vj20jg0t6tb6.jpg" alt="15d11.jpg"></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">request_raw</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">      self,</span></span></span><br><span class="line"><span class="function"><span class="params">      method,</span></span></span><br><span class="line"><span class="function"><span class="params">      url,</span></span></span><br><span class="line"><span class="function"><span class="params">      *,</span></span></span><br><span class="line"><span class="function"><span class="params">      params=None,</span></span></span><br><span class="line"><span class="function"><span class="params">      supplied_headers: Optional[Dict[str, str]] = None,</span></span></span><br><span class="line"><span class="function"><span class="params">      files=None,</span></span></span><br><span class="line"><span class="function"><span class="params">      stream: bool = False,</span></span></span><br><span class="line"><span class="function"><span class="params">      request_id: Optional[str] = None,</span></span></span><br><span class="line"><span class="function"><span class="params">      request_timeout: Optional[Union[float, Tuple[float, float]]] = None,</span></span></span><br><span class="line"><span class="function"><span class="params">  )</span> -&gt; requests.Response:</span></span><br><span class="line">      abs_url, headers, data = self._prepare_request_raw(</span><br><span class="line">          url, supplied_headers, method, params, files, request_id</span><br><span class="line">      )</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> <span class="keyword">not</span> hasattr(_thread_context, <span class="string">"session"</span>):</span><br><span class="line">          _thread_context.session = _make_session()</span><br><span class="line"></span><br><span class="line">      <span class="keyword">try</span>:</span><br><span class="line">          proxies = &#123;</span><br><span class="line">              <span class="string">'http'</span>: <span class="string">'http://127.0.0.1:7890'</span>,</span><br><span class="line">              <span class="string">'https'</span>: <span class="string">'http://127.0.0.1:7890'</span></span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          result = _thread_context.session.request(</span><br><span class="line">              method,</span><br><span class="line">              abs_url,</span><br><span class="line">              headers=headers,</span><br><span class="line">              data=data,</span><br><span class="line">              files=files,</span><br><span class="line">              stream=stream,</span><br><span class="line">              proxies=proxies,</span><br><span class="line">              timeout=request_timeout <span class="keyword">if</span> request_timeout <span class="keyword">else</span> TIMEOUT_SECS,</span><br><span class="line">          )</span><br><span class="line">      <span class="keyword">except</span> requests.exceptions.Timeout <span class="keyword">as</span> e:</span><br><span class="line">          <span class="keyword">raise</span> error.Timeout(<span class="string">"Request timed out: &#123;&#125;"</span>.format(e)) <span class="keyword">from</span> e</span><br><span class="line">      <span class="keyword">except</span> requests.exceptions.RequestException <span class="keyword">as</span> e:</span><br><span class="line">          <span class="keyword">raise</span> error.APIConnectionError(</span><br><span class="line">              <span class="string">"Error communicating with OpenAI: &#123;&#125;"</span>.format(e)</span><br><span class="line">          ) <span class="keyword">from</span> e</span><br><span class="line">      util.log_debug(</span><br><span class="line">          <span class="string">"OpenAI API response"</span>,</span><br><span class="line">          path=abs_url,</span><br><span class="line">          response_code=result.status_code,</span><br><span class="line">          processing_ms=result.headers.get(<span class="string">"OpenAI-Processing-Ms"</span>),</span><br><span class="line">          request_id=result.headers.get(<span class="string">"X-Request-Id"</span>),</span><br><span class="line">      )</span><br><span class="line">      <span class="comment"># Don't read the whole stream for debug logging unless necessary.</span></span><br><span class="line">      <span class="keyword">if</span> openai.log == <span class="string">"debug"</span>:</span><br><span class="line">          util.log_debug(</span><br><span class="line">              <span class="string">"API response body"</span>, body=result.content, headers=result.headers</span><br><span class="line">          )</span><br><span class="line">      <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
 
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
+<p>之后在遇到问题，请直接问 gpt-4</p>
+<h2 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h2><p>最近ai 特别火，拿Stable-Diffusion 创作一副，其他的太过XX，就不放了</p>
+<img src="/2023/04/15/pycharm-%E5%AF%BC%E5%85%A5Auto-GPT%EF%BC%88%E5%A2%99%E5%86%85%EF%BC%89/2.png" class="" title="导入项目">
 
 
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/26/IO%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/"/>
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="excel_bat"/>
-      <meta itemprop="description" content="技术分享"/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="excelbat's blog"/>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/09/26/IO%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/" class="post-title-link" itemprop="url">IO性能对比</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-26 14:43:57" itemprop="dateCreated datePublished" datetime="2019-09-26T14:43:57+08:00">2019-09-26</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-10-19 10:27:56" itemprop="dateModified" datetime="2019-10-19T10:27:56+08:00">2019-10-19</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/09/26/IO%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/26/IO%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/2019/09/26/IO%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/" class="leancloud_visitors" data-flag-title="IO性能对比">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
           
         
       
@@ -1874,11 +1703,213 @@ catch (IOException e) {
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/07/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FI-O%E5%88%A9%E7%94%A8%E7%8E%87%E4%BD%8E%E8%B0%83%E4%BC%98%EF%BC%88%E4%B8%8B%EF%BC%89/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="excel_bat"/>
+      <meta itemprop="description" content="技术分享"/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="excelbat's blog"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/07/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FI-O%E5%88%A9%E7%94%A8%E7%8E%87%E4%BD%8E%E8%B0%83%E4%BC%98%EF%BC%88%E4%B8%8B%EF%BC%89/" class="post-title-link" itemprop="url">文件系统I&#x2F;O利用率低调优（下）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-07 11:18:35" itemprop="dateCreated datePublished" datetime="2019-03-07T11:18:35+08:00">2019-03-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-08 14:14:02" itemprop="dateModified" datetime="2019-03-08T14:14:02+08:00">2019-03-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/systemanalyze/" itemprop="url" rel="index"><span itemprop="name">系统分析</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/03/07/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FI-O%E5%88%A9%E7%94%A8%E7%8E%87%E4%BD%8E%E8%B0%83%E4%BC%98%EF%BC%88%E4%B8%8B%EF%BC%89/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/07/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FI-O%E5%88%A9%E7%94%A8%E7%8E%87%E4%BD%8E%E8%B0%83%E4%BC%98%EF%BC%88%E4%B8%8B%EF%BC%89/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/03/07/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FI-O%E5%88%A9%E7%94%A8%E7%8E%87%E4%BD%8E%E8%B0%83%E4%BC%98%EF%BC%88%E4%B8%8B%EF%BC%89/" class="leancloud_visitors" data-flag-title="文件系统I/O利用率低调优（下）">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="回顾一下"><a href="#回顾一下" class="headerlink" title="回顾一下"></a>回顾一下</h3><hr>
+<p><a href="https://excel-bat.github.io/2019/02/23/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FI-O%E5%88%A9%E7%94%A8%E7%8E%87%E4%BD%8E%E8%B0%83%E4%BC%98%EF%BC%88%E4%B8%8A%EF%BC%89/" target="_blank" rel="noopener">上一节</a>我们讲解了RandomAccessFile<br>打开的文件句柄过多导致cpu占用较多，同时我们设想，使用缓存缓存住打开的文件句柄，那么这时候就应该能大幅度降低打开的句柄数目。</p>
+<h3 id="尝试前的思考"><a href="#尝试前的思考" class="headerlink" title="尝试前的思考"></a>尝试前的思考</h3><hr>
+<p>之前在分析场景的时候，不充分，忽略了一个很重要的问题：在分布式文件系统中，通过版本号来保证每次写入的内容全新，那么每个版本的文件都会新开一个文件句柄，这个不能避免新文件的打开；所以将文件句柄放到hashmap中不可取</p>
+<h3 id="后续尝试"><a href="#后续尝试" class="headerlink" title="后续尝试"></a>后续尝试</h3><hr>
+<p>待完成</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"></a>
   </nav>
 
 
@@ -1920,7 +1951,7 @@ catch (IOException e) {
                 
                   <a href="/archives/%20%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1939,7 +1970,9 @@ catch (IOException e) {
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">分类</span>
                   
                 </div>
@@ -1964,7 +1997,13 @@ catch (IOException e) {
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2026,7 +2065,7 @@ catch (IOException e) {
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
