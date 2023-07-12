@@ -96,27 +96,25 @@
 
 
 
-  <meta name="description" content="安利一下 在最近系统性能调优的过程中，用到了很多工具，由于笔者开发的主要是java应用，从linux工具到jdk工具，以及全链路追踪工具，都解决了相当多的问题，而完全面向java应用的的工具，笔者墙裂推荐阿里的arthas,这款工具简单，简单到分析cpu、内存问题分分钟就能找到些蛛丝马迹。 问题抽象 项目最近做了一次大升级，压测后发现项目跑了24小时后，开始出现某个线程cpu占用100%，如下图所">
-<meta name="keywords" content="性能优化">
+  <meta name="description" content="筛选币种警报本文介绍了如何使用油猴脚本和Chrome通知，来检测tradingview筛选器表格中的行数，并在特定条件下进行警告。 问题描述我们需要在 https:&#x2F;&#x2F;cn.tradingview.com&#x2F;crypto-coins-screener&#x2F; 筛选 首先，我们需要用tradingview 筛选器功能筛选出，涨跌幅比较大的币种  筛选24h涨跌幅较大的币种 筛选评级小于150的币种  接下来">
+<meta name="keywords" content="教程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="引发线程cpu占用率持续飙升的根因分析">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;03&#x2F;13&#x2F;%E5%BC%95%E5%8F%91%E7%BA%BF%E7%A8%8Bcpu%E5%8D%A0%E7%94%A8%E7%8E%87%E6%8C%81%E7%BB%AD%E9%A3%99%E5%8D%87%E7%9A%84%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90&#x2F;index.html">
+<meta property="og:title" content="tradingview 筛选币种通过油猴通知">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2023&#x2F;07&#x2F;12&#x2F;tradingview-%E7%AD%9B%E9%80%89%E5%B8%81%E7%A7%8D%E9%80%9A%E8%BF%87%E6%B2%B9%E7%8C%B4%E9%80%9A%E7%9F%A5&#x2F;index.html">
 <meta property="og:site_name" content="excelbat&#39;s blog">
-<meta property="og:description" content="安利一下 在最近系统性能调优的过程中，用到了很多工具，由于笔者开发的主要是java应用，从linux工具到jdk工具，以及全链路追踪工具，都解决了相当多的问题，而完全面向java应用的的工具，笔者墙裂推荐阿里的arthas,这款工具简单，简单到分析cpu、内存问题分分钟就能找到些蛛丝马迹。 问题抽象 项目最近做了一次大升级，压测后发现项目跑了24小时后，开始出现某个线程cpu占用100%，如下图所">
+<meta property="og:description" content="筛选币种警报本文介绍了如何使用油猴脚本和Chrome通知，来检测tradingview筛选器表格中的行数，并在特定条件下进行警告。 问题描述我们需要在 https:&#x2F;&#x2F;cn.tradingview.com&#x2F;crypto-coins-screener&#x2F; 筛选 首先，我们需要用tradingview 筛选器功能筛选出，涨跌幅比较大的币种  筛选24h涨跌幅较大的币种 筛选评级小于150的币种  接下来">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;03&#x2F;13&#x2F;%E5%BC%95%E5%8F%91%E7%BA%BF%E7%A8%8Bcpu%E5%8D%A0%E7%94%A8%E7%8E%87%E6%8C%81%E7%BB%AD%E9%A3%99%E5%8D%87%E7%9A%84%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90&#x2F;WX20190313-175543@2x.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;03&#x2F;13&#x2F;%E5%BC%95%E5%8F%91%E7%BA%BF%E7%A8%8Bcpu%E5%8D%A0%E7%94%A8%E7%8E%87%E6%8C%81%E7%BB%AD%E9%A3%99%E5%8D%87%E7%9A%84%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90&#x2F;image.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;03&#x2F;13&#x2F;%E5%BC%95%E5%8F%91%E7%BA%BF%E7%A8%8Bcpu%E5%8D%A0%E7%94%A8%E7%8E%87%E6%8C%81%E7%BB%AD%E9%A3%99%E5%8D%87%E7%9A%84%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90&#x2F;WX20190313-182126@2x.png">
-<meta property="og:updated_time" content="2019-03-13T10:39:54.000Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2023&#x2F;07&#x2F;12&#x2F;tradingview-%E7%AD%9B%E9%80%89%E5%B8%81%E7%A7%8D%E9%80%9A%E8%BF%87%E6%B2%B9%E7%8C%B4%E9%80%9A%E7%9F%A5&#x2F;2.jpg">
+<meta property="og:updated_time" content="2023-07-12T15:18:52.537Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;03&#x2F;13&#x2F;%E5%BC%95%E5%8F%91%E7%BA%BF%E7%A8%8Bcpu%E5%8D%A0%E7%94%A8%E7%8E%87%E6%8C%81%E7%BB%AD%E9%A3%99%E5%8D%87%E7%9A%84%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90&#x2F;WX20190313-175543@2x.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2023&#x2F;07&#x2F;12&#x2F;tradingview-%E7%AD%9B%E9%80%89%E5%B8%81%E7%A7%8D%E9%80%9A%E8%BF%87%E6%B2%B9%E7%8C%B4%E9%80%9A%E7%9F%A5&#x2F;2.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/13/引发线程cpu占用率持续飙升的根因分析/"/>
+  <link rel="canonical" href="http://yoursite.com/2023/07/12/tradingview-筛选币种通过油猴通知/"/>
 
 
 
@@ -126,7 +124,7 @@
   };
 </script>
 
-  <title>引发线程cpu占用率持续飙升的根因分析 | excelbat's blog</title>
+  <title>tradingview 筛选币种通过油猴通知 | excelbat's blog</title>
   
 
 
@@ -320,7 +318,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/13/%E5%BC%95%E5%8F%91%E7%BA%BF%E7%A8%8Bcpu%E5%8D%A0%E7%94%A8%E7%8E%87%E6%8C%81%E7%BB%AD%E9%A3%99%E5%8D%87%E7%9A%84%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90/"/>
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/07/12/tradingview-%E7%AD%9B%E9%80%89%E5%B8%81%E7%A7%8D%E9%80%9A%E8%BF%87%E6%B2%B9%E7%8C%B4%E9%80%9A%E7%9F%A5/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="excel_bat"/>
@@ -337,7 +335,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">引发线程cpu占用率持续飙升的根因分析
+          <h1 class="post-title" itemprop="name headline">tradingview 筛选币种通过油猴通知
 
               
             
@@ -363,7 +361,7 @@
                 
               
 
-              <time title="创建时间：2019-03-13 17:34:10 / 修改时间：18:39:54" itemprop="dateCreated datePublished" datetime="2019-03-13T17:34:10+08:00">2019-03-13</time>
+              <time title="创建时间：2023-07-12 22:01:41 / 修改时间：23:18:52" itemprop="dateCreated datePublished" datetime="2023-07-12T22:01:41+08:00">2023-07-12</time>
             
 
             
@@ -385,7 +383,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/systemanalyze/" itemprop="url" rel="index"><span itemprop="name">系统分析</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E8%84%9A%E6%9C%AC/" itemprop="url" rel="index"><span itemprop="name">脚本</span></a></span>
 
                 
                 
@@ -404,8 +402,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/03/13/%E5%BC%95%E5%8F%91%E7%BA%BF%E7%A8%8Bcpu%E5%8D%A0%E7%94%A8%E7%8E%87%E6%8C%81%E7%BB%AD%E9%A3%99%E5%8D%87%E7%9A%84%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/13/%E5%BC%95%E5%8F%91%E7%BA%BF%E7%A8%8Bcpu%E5%8D%A0%E7%94%A8%E7%8E%87%E6%8C%81%E7%BB%AD%E9%A3%99%E5%8D%87%E7%9A%84%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90/" itemprop="commentCount"></span>
+                <a href="/2023/07/12/tradingview-%E7%AD%9B%E9%80%89%E5%B8%81%E7%A7%8D%E9%80%9A%E8%BF%87%E6%B2%B9%E7%8C%B4%E9%80%9A%E7%9F%A5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2023/07/12/tradingview-%E7%AD%9B%E9%80%89%E5%B8%81%E7%A7%8D%E9%80%9A%E8%BF%87%E6%B2%B9%E7%8C%B4%E9%80%9A%E7%9F%A5/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -413,7 +411,7 @@
 
           
           
-            <span id="/2019/03/13/%E5%BC%95%E5%8F%91%E7%BA%BF%E7%A8%8Bcpu%E5%8D%A0%E7%94%A8%E7%8E%87%E6%8C%81%E7%BB%AD%E9%A3%99%E5%8D%87%E7%9A%84%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90/" class="leancloud_visitors" data-flag-title="引发线程cpu占用率持续飙升的根因分析">
+            <span id="/2023/07/12/tradingview-%E7%AD%9B%E9%80%89%E5%B8%81%E7%A7%8D%E9%80%9A%E8%BF%87%E6%B2%B9%E7%8C%B4%E9%80%9A%E7%9F%A5/" class="leancloud_visitors" data-flag-title="tradingview 筛选币种通过油猴通知">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -444,27 +442,31 @@
       
 
       
-        <h3 id="安利一下"><a href="#安利一下" class="headerlink" title="安利一下"></a>安利一下</h3><hr>
-<p>在最近系统性能调优的过程中，用到了很多工具，由于笔者开发的主要是java应用，从linux<br>工具到jdk工具，以及全链路追踪工具，都解决了相当多的问题，而完全面向java应用的的工具，笔者墙裂推荐<br><a href="https://alibaba.github.io/arthas/" target="_blank" rel="noopener">阿里的arthas</a>,这款工具简单，简单到分析cpu、内存问题分分钟就能找到些蛛丝马迹。</p>
-<h3 id="问题抽象"><a href="#问题抽象" class="headerlink" title="问题抽象"></a>问题抽象</h3><hr>
-<p>项目最近做了一次大升级，压测后发现项目跑了24小时后，开始出现某个线程cpu占用100%，如下图所示：</p>
-  <img src="/2019/03/13/%E5%BC%95%E5%8F%91%E7%BA%BF%E7%A8%8Bcpu%E5%8D%A0%E7%94%A8%E7%8E%87%E6%8C%81%E7%BB%AD%E9%A3%99%E5%8D%87%E7%9A%84%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90/WX20190313-175543@2x.png" class="" title="占用cpu多的堆栈">
+        <h1 id="筛选币种警报"><a href="#筛选币种警报" class="headerlink" title="筛选币种警报"></a>筛选币种警报</h1><p>本文介绍了如何使用油猴脚本和Chrome通知，来检测tradingview筛选器表格中的行数，并在特定条件下进行警告。</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>我们需要在 <a href="https://cn.tradingview.com/crypto-coins-screener/" target="_blank" rel="noopener">https://cn.tradingview.com/crypto-coins-screener/</a> 筛选</p>
+<p>首先，我们需要用tradingview 筛选器功能筛选出，涨跌幅比较大的币种</p>
+<ul>
+<li>筛选24h涨跌幅较大的币种</li>
+<li>筛选评级小于150的币种</li>
+</ul>
+<p>接下来，我们需要通过油猴脚本，探测页面，找出满足条件的币种，并在满足以下条件时触发警告</p>
+<ul>
+<li>表格中的行数大于1</li>
+<li>触发chrome通知</li>
+</ul>
+<h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><ol>
+<li><p>首先，我们需要使用油猴脚本管理器来运行自定义脚本。确保已安装并启用油猴脚本管理器。</p>
+</li>
+<li><p>创建一个油猴脚本，并指定脚本的名称、命名空间和描述信息。</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         检测表格行数</span></span><br><span class="line"><span class="comment">// @namespace    your-namespace</span></span><br><span class="line"><span class="comment">// @version      1.0</span></span><br><span class="line"><span class="comment">// @description  检测表格行数示例脚本</span></span><br><span class="line"><span class="comment">// @match        https://cn.tradingview.com/crypto-coins-screener/</span></span><br><span class="line"><span class="comment">// @grant        none</span></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">    'use strict'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定时执行检测逻辑</span></span><br><span class="line">    setInterval(checkTableContent, <span class="number">10000</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">checkTableContent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 查找表格中的tr元素</span></span><br><span class="line">        <span class="keyword">const</span> tableRows = <span class="built_in">document</span>.querySelectorAll(<span class="string">'#js-screener-container table tbody tr'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 判断tr元素数量是否大于 1</span></span><br><span class="line">        <span class="keyword">if</span> (tableRows.length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">// 使用Chrome通知弹出</span></span><br><span class="line">            showNotification(<span class="string">'出现涨跌较大的币种！'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">showNotification</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (Notification.permission !== <span class="string">'granted'</span>) &#123;</span><br><span class="line">            <span class="comment">// 请求通知权限</span></span><br><span class="line">            Notification.requestPermission();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 弹出通知</span></span><br><span class="line">            <span class="keyword">const</span> notification = <span class="keyword">new</span> Notification(<span class="string">'警告'</span>, &#123;</span><br><span class="line">                body: message,</span><br><span class="line">                icon: <span class="string">'https://github.com/tangly1024/NotionNext/blob/main/docs/theme-medium.png'</span> <span class="comment">// 替换为自定义图标URL</span></span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 点击通知时打开页面</span></span><br><span class="line">            notification.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="built_in">window</span>.focus();</span><br><span class="line">                notification.close();</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
 
-<p>重启后，仔细观察该线程，发现线程cpu使用率在逐渐递增，我们通过jvisualvm，快速的找到了问题的堆栈，发现是某个redis操作，这个操作里面调用了lua脚本，并使用了evalsha（）的方式执行。</p>
-<h3 id="抽丝剥茧"><a href="#抽丝剥茧" class="headerlink" title="抽丝剥茧"></a>抽丝剥茧</h3><hr>
-<p>从现象我们理所当然的想到了，会不会是redis集群慢了，拖垮了整个项目，通过redis<br>monitor 发现单次请求响应变化不大，并且redis cpu 占用率属于正常。使用perf命令记录如下：</p>
-  <img src="/2019/03/13/%E5%BC%95%E5%8F%91%E7%BA%BF%E7%A8%8Bcpu%E5%8D%A0%E7%94%A8%E7%8E%87%E6%8C%81%E7%BB%AD%E9%A3%99%E5%8D%87%E7%9A%84%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90/image.png" class="" title="redis cpu占用">
-
-<p>然后开始想，既然占用cpu 多，那就把方法时间打出来吧，通过log的方式记录下来，发下每千次调用的平均时间是毫秒级，而且稳定不会递增。<br>这个时候又没了思路，用arthas 开始记录该方法的耗时，一行命令就记录如下，每5s记录一次平均时间，而且不用改代码，这可是福音啊</p>
-<img src="/2019/03/13/%E5%BC%95%E5%8F%91%E7%BA%BF%E7%A8%8Bcpu%E5%8D%A0%E7%94%A8%E7%8E%87%E6%8C%81%E7%BB%AD%E9%A3%99%E5%8D%87%E7%9A%84%E6%A0%B9%E5%9B%A0%E5%88%86%E6%9E%90/WX20190313-182126@2x.png" class="" title="monitor执行结果">
-
-<p>基本跟log一致，然后开始使用 <code>thread -n 3 -i 1000</code><br>发现另外一个线程，然后同样执行monitor，发现该方法单位时间内的调用次数在增加，什么情况，方法调用难道写了个循环么，打开代码一看，外层调用并没有循环。。。<br>但是发现方法内存在循环，该循环是从set集合里取数据并判断该数据是否合法，合法就从set中移除，并break循环，看起来貌似没有任何问题。直觉告诉我，这个set会不会过大呢，这个set是用枚举单例的成员变量，想要打印这个变量里面的数据，放在以前打印log，又是一段代码，而且查看起来特别费劲，这个时候，我们又祭出神器，arthas的ognl命令。非常给力</p>
-<blockquote>
-<p>ognl ‘@<a href="mailto:xxx.common.redis.collections.UniqConcurrentSet@INSTANCE.dataIsNullSet" target="_blank" rel="noopener">xxx.common.redis.collections.UniqConcurrentSet@INSTANCE.dataIsNullSet</a>‘<br>ognl ‘@<a href="mailto:xxx.common.redis.collections.UniqConcurrentSet@INSTANCE.dataIsNullSet.size" target="_blank" rel="noopener">xxx.common.redis.collections.UniqConcurrentSet@INSTANCE.dataIsNullSet.size</a>()’</p>
-</blockquote>
-<p>结果这个set都37w<br>条数据了，而且还在持续上升，但是占用内存很小，单行记录80B左右，总体不到50M，原来真正导致cpu上升的元凶就是数据量大了后，遍历耗时了，定位到了原因，接着及时删除数据，cpu平稳了</p>
-<pre><code>那今天先聊到这，休息下眼睛
-{% asset_img meizi.jpg 妹纸图 %}</code></pre>
+<p>保存脚本并将其导入到油猴脚本管理器中，并确保在 <a href="https://cn.tradingview.com/crypto-coins-screener/" target="_blank" rel="noopener">https://cn.tradingview.com/crypto-coins-screener/</a> 页面上运行该脚本。</p>
+<p>现在，每隔5秒，脚本将检查表格中的行数和行内容，如果行数大于1，将弹出Chrome通知进行警告。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>通过油猴脚本和Chrome通知的结合，我们可以实现在网页中检测表格行数的功能，并根据特定条件进行警告。这种技术可以应用于各种场景，帮助我们实时监测和处理特定页面上的数据变化。</p>
+<p>希望本文对您有所帮助！如有任何疑问，请随时提问。</p>
+<img src="/2023/07/12/tradingview-%E7%AD%9B%E9%80%89%E5%B8%81%E7%A7%8D%E9%80%9A%E8%BF%87%E6%B2%B9%E7%8C%B4%E9%80%9A%E7%9F%A5/2.jpg" class="" title="导入项目">
       
     </div>
 
@@ -516,7 +518,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag"># 性能优化</a>
+            <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag"># 教程</a>
           
         </div>
       
@@ -529,8 +531,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/07/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FFUSE%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/" rel="next" title="文件系统FUSE开发实践">
-                <i class="fa fa-chevron-left"></i> 文件系统FUSE开发实践
+              <a href="/2023/04/15/pycharm-%E5%AF%BC%E5%85%A5Auto-GPT%EF%BC%88%E5%A2%99%E5%86%85%EF%BC%89/" rel="next" title="pycharm 导入Auto-GPT（墙内）">
+                <i class="fa fa-chevron-left"></i> pycharm 导入Auto-GPT（墙内）
               </a>
             
           </div>
@@ -538,10 +540,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/15/apue-%E7%96%91%E9%9A%BE%E6%A6%82%E5%BF%B5%E8%A7%A3%E6%9E%90-%E5%89%8D%E4%BA%94%E7%AB%A0/" rel="prev" title="apue 疑难概念解析-前五章">
-                apue 疑难概念解析-前五章 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -726,7 +724,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安利一下"><span class="nav-number">1.</span> <span class="nav-text">安利一下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题抽象"><span class="nav-number">2.</span> <span class="nav-text">问题抽象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽丝剥茧"><span class="nav-number">3.</span> <span class="nav-text">抽丝剥茧</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#筛选币种警报"><span class="nav-number">1.</span> <span class="nav-text">筛选币种警报</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现步骤"><span class="nav-number">1.2.</span> <span class="nav-text">实现步骤</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
